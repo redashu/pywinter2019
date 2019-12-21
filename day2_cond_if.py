@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-import  subprocess
+import  subprocess,time
+import  webbrowser  #  it will open default browser 
 options="""
 Press  1  to  start your default web browser :- 
 Press  2  to  check your internet connection speed :- 
@@ -20,5 +21,36 @@ print("you have entered  "+choice)
 #  conditional statements
 if  choice  ==  '4'  :
 	print("current time is ",subprocess.getoutput("date +%T"))
+
+elif  choice  ==  '1'  :
+	print("opening  browser plz wait...")
+	time.sleep(3)
+	#  opening  default browser
+	webbrowser.open_new_tab('https://www.google.com')
+elif  choice  ==  '3'  :
+	output=subprocess.getstatusoutput('ping -c 2 8.8.8.8')
+	if output[0] == 0 :
+		print("your Internet is Working Fine..")
+	else :
+		print("Your internet is not working..")
+
+elif  choice  ==  '7'  :
+	#  asking for directory name 
+	dir_name=input("Please enter name of Directory :- ")
+	dir_output=subprocess.getstatusoutput("mkdir  "+dir_name)
+	if dir_output[0]  ==  0 :
+		print("your directory  "+dir_name+" Successfully created ")
+	else :
+		print("Please choose another directory name ")
+
+elif  choice  ==  '10'  :
+#   taking user input 
+	msg=input("please enter your message to search on Google :- ")
+	time.sleep(2)
+	#  opening  default browser
+	webbrowser.open_new_tab('https://www.google.com/search?q='+msg)
+
+
+
 else :
 	print("wrong option")
